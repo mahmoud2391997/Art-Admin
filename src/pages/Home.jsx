@@ -37,7 +37,7 @@ export default function Home() {
     },
   ];
   return (
-    <div className="grid gap-4 w-[75%] lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 p-5">
+    <div className="grid gap-4 w-[80%] lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 p-5">
       {arr.map((card) => {
         return (
           <CardStats

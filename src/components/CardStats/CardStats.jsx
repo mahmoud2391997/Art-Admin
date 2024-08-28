@@ -84,7 +84,7 @@ export default function CardStats({
             </div>
           </div>
           <div className=" relative w-full flex justify-between  ">
-            <div className="w-[120px] relative ">
+            <div className="w-3/6 relative ">
               <p className="text-blueGray-400 min-w-7 uppercase font-bold text-xs">
                 {statSubtitle}
               </p>
@@ -92,8 +92,8 @@ export default function CardStats({
                 {statTitle}
               </span>
             </div>
-            <div className="w-[110px]  relative">
-              <div className="text-sm   text-right  absolute right-0 bottom-0 text-blueGray-400 mt-4">
+            <div className="w-3/6 relative">
+              <div className="text-sm w-full  text-right  absolute right-0 bottom-0 text-blueGray-400 mt-4">
                 {statDescripiron}
               </div>
             </div>

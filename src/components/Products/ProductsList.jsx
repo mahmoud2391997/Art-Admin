@@ -20,9 +20,15 @@ const ProductList = () => {
     });  
     const [showConfirmDelete, setShowConfirmDelete] = useState(false);  
     const [productToDelete, setProductToDelete] = useState(null);  
+    const [loading, setLoading] = useState(true);  // Loading state  
 
     useEffect(() => {  
-        dispatch(fetchProductsAction());  
+        const fetchData = async () => {  
+            setLoading(true);  // Start loading  
+            await dispatch(fetchProductsAction());  
+            setLoading(false);  // End loading  
+        };  
+        fetchData();  
     }, [dispatch]);  
 
     const handleDelete = () => {  
@@ -42,7 +48,6 @@ const ProductList = () => {
         if (newProduct._id) {  
             dispatch(editProductAction(newProduct._id, newProduct));  
             setEditingProduct(null);  
-            // Clear the newProduct state after updating  
             setNewProduct({ name: '', price: '', description: '', stock: '', image: '', status: '', categoryId: '' });  
             setIsEditing(false);  
         }  
@@ -50,13 +55,13 @@ const ProductList = () => {
 
     const handleAddProduct = () => {  
         dispatch(addProductAction(newProduct));  
-        // Clear the newProduct state after adding  
         setNewProduct({ name: '', price: '', description: '', stock: '', image: '', status: '', categoryId: '' });  
         setIsAdding(false);  
     };  
 
     return (  
         <div className="p-10 space-y-6">  
+            {/* Title Image Section */}  
             <div className="relative overflow-hidden w-full h-[150px] bg-white">  
                 <img  
                     className="absolute w-full h-full object-cover animate-moveVertical"  
@@ -70,50 +75,43 @@ const ProductList = () => {
                 </div>  
             </div>  
 
-            {status === 'loading' && (  
-                <div className="flex justify-center items-center h-32 mb-6">  
-                    <Spinner />  
-                </div>  
-            )}  
-
-            <div className='px-4 py-6'>  
-                <div className="flex justify-start mb-6 ml-4">  
-                    <MainButton  
-                        title="Add New Product"  
-                        onClick={() => {  
-                            setIsAdding(true);  
-                            // Clear the newProduct state when starting to add a new product  
-                            setNewProduct({ _id: '', name: '', price: '', description: '', stock: '', image: '', status: '', categoryId: '' });  
-                        }}  
-                    />  
-                </div>  
-                <div>  
-                    {status === 'success' && products.length > 0 ? (  
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">  
-                            {products.map((product) => (  
-                                <ProductCard  
-                                    key={product._id}  
-                                    product={product}  
-                                    onEdit={() => handleEdit(product)}  
-                                    onDelete={() => {  
-                                        setProductToDelete(product);  
-                                        setShowConfirmDelete(true);  
-                                    }}  
-                                    className="mb-6"  
-                                />  
-                            ))}  
-                        </div>  
-                    ) : (  
-                        <Typography variant="h6" color="blue-gray" className="text-center mt-6 mb-6">  
-                            No products available.  
-                        </Typography>  
-                    )}  
-                </div>  
-            </div>     
-
-            {status === 'error' && (  
-                <div className="p-4 bg-red-100 text-red-600 border border-red-200 rounded-md mb-6">  
-                    There was an error loading products. Please try again later.  
+            {loading ? (  
+                <div className="flex items-center justify-center min-h-[200px]">  
+                    <Spinner className="h-20 w-20 text-main spinner-animation" />  
+                </div>   
+            ) : (  
+                <div className='px-4 py-6'>  
+                    <div className="flex justify-start mb-6 ml-4">  
+                        <MainButton  
+                            title="Add New Product"  
+                            onClick={() => {  
+                                setIsAdding(true);  
+                                setNewProduct({ _id: '', name: '', price: '', description: '', stock: '', image: '', status: '', categoryId: '' });  
+                            }}  
+                        />  
+                    </div>  
+                    <div>  
+                        {status === 'success' && products.length > 0 ? (  
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">  
+                                {products.map((product) => (  
+                                    <ProductCard  
+                                        key={product._id}  
+                                        product={product}  
+                                        onEdit={() => handleEdit(product)}  
+                                        onDelete={() => {  
+                                            setProductToDelete(product);  
+                                            setShowConfirmDelete(true);  
+                                        }}  
+                                        className="mb-6"  
+                                    />  
+                                ))}  
+                            </div>  
+                        ) : status === 'error' ? (  
+                            <Typography variant="h6" color="blue-gray" className="text-center mt-6 mb-6">  
+                                There was an error loading products. Please try again later.  
+                            </Typography>  
+                        ) : null}  
+                    </div>  
                 </div>  
             )}  
 
@@ -126,7 +124,6 @@ const ProductList = () => {
                 onClose={() => {   
                     setIsAdding(false);   
                     setIsEditing(false);   
-                    // Clear the newProduct state when closing the form  
                     setNewProduct({ _id: '', name: '', price: '', description: '', stock: '', image: '', status: '', categoryId: '' });  
                 }}  
                 className="mb-6"   

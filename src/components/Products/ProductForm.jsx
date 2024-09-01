@@ -71,10 +71,10 @@ export default function ProductForm({ open, isEditing, newProduct, setNewProduct
                 </div>  
             </DialogBody>  
             <DialogFooter className='ml-8 mb-2'>  
-                <Button onClick={onClose} className="mr-8 text-main">  
+                <Button onClick={onClose} className="mr-8 text-main font-bold">  
                     Cancel  
                 </Button>  
-                <Button onClick={onSave} className='text-main'>  
+                <Button onClick={onSave} className='text-main font-bold'>  
                     {isEditing ? 'Update Product' : 'Add Product'}  
                 </Button>  
             </DialogFooter>  

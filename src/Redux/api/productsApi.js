@@ -2,7 +2,13 @@ import axios from 'axios';
 
 export const addProduct = async (product) => {
     try {
-        const response = await axios.post('https://art-ecommerce-server.glitch.me/api/products', product);
+        const response = await axios.post(
+            `https://art-ecommerce-server.glitch.me/api/products`, product,
+            {headers:{
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTA5NTkwMCwiZXhwIjoxNzI1MzU1MTAwfQ.s9cTTHR0gblX-JAnEQ612qNb3UbcrpYS2oDY6dlixWc`
+            }}
+          )
         return response.data;
     } catch (error) {
         console.log('Error adding product:', error);
@@ -32,21 +38,43 @@ export const fetchProductById = async (productId) => {
 
 export const deleteProduct = async (productId) => {
     try {
-        await axios.delete(`https://art-ecommerce-server.glitch.me/api/products/${productId}`);
-        return productId;
+        const response = await axios.delete(
+            `https://art-ecommerce-server.glitch.me/admin/products/${productId}`,
+            {headers:{
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTA5NTkwMCwiZXhwIjoxNzI1MzU1MTAwfQ.s9cTTHR0gblX-JAnEQ612qNb3UbcrpYS2oDY6dlixWc`
+            }}
+          )
+          return response.data;
     } catch (error) {
         console.log('Error deleting product:', error);
         throw error;
     }
 };
-
+// function editProduct(productId, editedProduct,token) {
+//     axios
+//       .put(
+//         `https://art-ecommerce-server.glitch.me/api/products/${productId}`,
+//         editedProduct,{headers:{
+//           'Content-Type': 'application/json',
+//           'Authorization': `Bearer ${token}`
+//         }}
+//       )
+//       .then((response) => console.log(response.data))
+//       .catch((error) => {
+//         console.error(error);
+//       });
+//   }
 
 export const editProduct = async (productId, editedProduct) => {
     try {
         const response = await axios.put(
             `https://art-ecommerce-server.glitch.me/api/products/${productId}`,
-            editedProduct
-        );
+            editedProduct,{headers:{
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTA5NTkwMCwiZXhwIjoxNzI1MzU1MTAwfQ.s9cTTHR0gblX-JAnEQ612qNb3UbcrpYS2oDY6dlixWc`
+            }}
+          )
         return response.data;
     } catch (error) {
         console.log('Error editing product:', error);

@@ -5,7 +5,10 @@ export default {
     extend: {
       colors: {
         main: 'var(--main-gray)',
-      }
+      },
+      fontFamily: {
+        "eb-garamond": ['"EB Garamond"', "serif"],
+      },
     },
   },
   plugins: [],

@@ -1,11 +1,15 @@
 import { Button, Card, Typography, CardBody } from '@material-tailwind/react';  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';  
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';  
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';  
 
-export default function ProductCard({ product, onEdit, onDelete }) {  
+export default function ProductCard({ product, onEdit, onDelete }) { 
+    
+    const navigate = useNavigate();
+    
     return (  
         <div className='p-3 w-full max-w-sm'>  
-            <Card className="relative flex flex-col items-center group rounded-lg shadow-lg  p-3">  
+            <Card key={product._id} className="relative flex flex-col items-center group rounded-lg shadow-lg  p-3">  
                 <div className="relative w-full mb-4 overflow-hidden">  
                     <img  
                         src={product.image}  
@@ -15,9 +19,10 @@ export default function ProductCard({ product, onEdit, onDelete }) {
                 </div>  
                 <CardBody className="flex flex-col items-center justify-between h-32">  
                     <Typography  
+                        onClick={() => navigate(`/products/${product._id}`)}
                         variant="h5"  
                         color="blue-gray"  
-                        className="text-center sm:text-lg font-eb-garamond text-base leading-5 tracking-wide"  
+                        className="text-center sm:text-lg font-eb-garamond text-base leading-5 tracking-wide cursor-pointer"  
                     >  
                         {product.name}  
                     </Typography>  

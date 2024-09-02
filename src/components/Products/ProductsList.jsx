@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';  
 import { useDispatch, useSelector } from 'react-redux';  
 import { fetchProductsAction, deleteProductAction, addProductAction, editProductAction } from '../../Redux/actions/productsActions';  
-import { Typography, Spinner, Button } from '@material-tailwind/react';  
+import { Typography, Spinner } from '@material-tailwind/react';  
 import ProductForm from './ProductForm';  
 import ConfirmDelete from './ConfirmDelete';  
 import ProductCard from './ProductCard';  
@@ -15,18 +15,23 @@ const ProductList = () => {
     const [isEditing, setIsEditing] = useState(false);  
     const [isAdding, setIsAdding] = useState(false);  
     const [editingProduct, setEditingProduct] = useState(null);  
-    const [newProduct, setNewProduct] = useState({  
-        _id: '', name: '', price: '', description: '', stock: '', image: '', status: '', categoryId: ''  
+    const [newProduct, setNewProduct] = useState({     
+        name: '',   
+        description: '',   
+        price: 0,  // Initialize stock as a number  
+        image: '',   
+        status: '',   
+        categoryName: ''  
     });  
     const [showConfirmDelete, setShowConfirmDelete] = useState(false);  
     const [productToDelete, setProductToDelete] = useState(null);  
-    const [loading, setLoading] = useState(true);  // Loading state  
+    const [loading, setLoading] = useState(true);  
 
     useEffect(() => {  
         const fetchData = async () => {  
-            setLoading(true);  // Start loading  
-            await dispatch(fetchProductsAction());  
-            setLoading(false);  // End loading  
+            setLoading(true);   
+            dispatch(fetchProductsAction());  
+            setLoading(false);  
         };  
         fetchData();  
     }, [dispatch]);  
@@ -47,33 +52,43 @@ const ProductList = () => {
     const handleUpdate = () => {  
         if (newProduct._id) {  
             dispatch(editProductAction(newProduct._id, newProduct));  
-            setEditingProduct(null);  
-            setNewProduct({ name: '', price: '', description: '', stock: '', image: '', status: '', categoryId: '' });  
+            resetForm();  
             setIsEditing(false);  
         }  
     };  
 
     const handleAddProduct = () => {  
         dispatch(addProductAction(newProduct));  
-        setNewProduct({ name: '', price: '', description: '', stock: '', image: '', status: '', categoryId: '' });  
+        resetForm();  
         setIsAdding(false);  
     };  
 
+    const resetForm = () => {  
+        setNewProduct({   
+            name: '',   
+            description: '',   
+            price: 0,  // Initialize price as a number  
+            stock: 0,  // Initialize stock as a number  
+            image: '',   
+            status: '',   
+            categoryName: ''   
+        });  
+    };  
+
     return (  
-        <div className="p-10 space-y-6">  
-            {/* Title Image Section */}  
-            <div className="relative overflow-hidden w-full h-[150px] bg-white">  
+        <div className="relative bg-white flex flex-col items-center pb-16 mb-10">  
+            <div className="relative w-full h-40 overflow-hidden bg-white">  
                 <img  
-                    className="absolute w-full h-full object-cover animate-moveVertical"  
+                    className="absolute inset-0 w-full h-full object-cover"  
                     src={titleImg}  
                     alt="Products List"  
                 />  
-                <div className="absolute top-1/2 left-0 z-10 p-4 transform -translate-y-1/2">  
-                    <h3 className="text-xl sm:text-2xl md:text-3xl p-20 font-eb-garamond text-white uppercase tracking-wider leading-[5.1em]">  
+                <div className="absolute top-1/2 left-0 z-10 w-full text-start transform -translate-y-1/2">  
+                    <h3 className="text-2xl md:text-4xl p-4 font-eb-garamond text-white uppercase tracking-wide leading-tight shadow-md">  
                         Products  
                     </h3>  
                 </div>  
-            </div>  
+            </div> 
 
             {loading ? (  
                 <div className="flex items-center justify-center min-h-[200px]">  
@@ -86,7 +101,7 @@ const ProductList = () => {
                             title="Add New Product"  
                             onClick={() => {  
                                 setIsAdding(true);  
-                                setNewProduct({ _id: '', name: '', price: '', description: '', stock: '', image: '', status: '', categoryId: '' });  
+                                resetForm();  
                             }}  
                         />  
                     </div>  
@@ -124,7 +139,7 @@ const ProductList = () => {
                 onClose={() => {   
                     setIsAdding(false);   
                     setIsEditing(false);   
-                    setNewProduct({ _id: '', name: '', price: '', description: '', stock: '', image: '', status: '', categoryId: '' });  
+                    resetForm();  
                 }}  
                 className="mb-6"   
             />  

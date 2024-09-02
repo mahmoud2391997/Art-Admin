@@ -33,11 +33,11 @@ export const productsReducer = (state = initialState, action) => {
                 status: 'success'
             }
         }
-        case DELETE_PRODUCT: {
-            return {
-                ...state,
-                products: products.filter((product) => product.id !== action.payload)
-            }
+        case DELETE_PRODUCT: {  
+            return {  
+                ...state,  
+                products: state.products.filter((product) => product._id !== action.payload)  
+            }  
         }
         case EDIT_PRODUCT: {
             return {

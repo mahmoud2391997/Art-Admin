@@ -43,7 +43,7 @@ export default function Orders() {
           ) : loading ? (
             <div className="w-full h-[20vh] flex flex-col items-center justify-center">
               <div className="w-[75%] h-[40%] flex items-center justify-center m-auto border-2 border-gray-500">
-                <h1 className="md:text-xl text-lg text-center">
+                <h1 className="md:text-xl  text-lg text-center">
                   Loading orders...
                 </h1>
               </div>

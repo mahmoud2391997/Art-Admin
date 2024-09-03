@@ -29,7 +29,7 @@ export default function ProductForm({ open, isEditing, newProduct, setNewProduct
                             type="number"  
                             placeholder="Product Price"  
                             value={newProduct.price}  
-                            onChange={(e) => setNewProduct({ ...newProduct, price: parseFloat(e.target.value) })}  
+                            onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}  
                             className="w-full border-b border-gray-400 p-2 placeholder-gray-500"  
                         />  
                         <Input  
@@ -43,7 +43,7 @@ export default function ProductForm({ open, isEditing, newProduct, setNewProduct
                             type="number"  
                             placeholder="Stock"  
                             value={newProduct.stock}  
-                            onChange={(e) => setNewProduct({ ...newProduct, stock: parseInt(e.target.value, 10) })}  
+                            onChange={(e) => setNewProduct({ ...newProduct, stock: e.target.value })}  
                             className="w-full border-b border-gray-400 p-2 placeholder-gray-500"  
                         />  
                         <Input  

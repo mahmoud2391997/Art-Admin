@@ -128,7 +128,7 @@ const ProductList = () => {
 
     return (  
         <div className="relative bg-white flex flex-col items-center pb-16 mb-10">  
-            <div className="relative w-full h-40 overflow-hidden bg-white">  
+            {/* <div className="relative w-full h-40 overflow-hidden bg-white">  
                 <img  
                     className="absolute inset-0 w-full h-full object-cover"  
                     src={titleImg}  
@@ -139,7 +139,7 @@ const ProductList = () => {
                         Products  
                     </h3>  
                 </div>  
-            </div>
+            </div> */}
 
             <div className='w-full '>
                 <div className="py-6 px-4 md:px-6 xl:px-7.5">

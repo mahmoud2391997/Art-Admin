@@ -96,7 +96,7 @@
     return (
     <div className="relative bg-white flex flex-col items-center pb-16 mb-10">
         {/* Header Image */}
-        <div className="relative w-full h-40 overflow-hidden bg-white">
+        {/* <div className="relative w-full h-40 overflow-hidden bg-white">
         <img
             className="absolute inset-0 w-full h-full object-cover"
             src={titleImg}
@@ -107,7 +107,7 @@
             Product Detail
             </h3>
         </div>
-        </div>
+        </div> */}
         <div className="flex ml-40 mt-10">
             <MainButton 
             title=" &#8592; Products List" onClick={() => navigate('/products')}  />
@@ -160,7 +160,7 @@
             <StaticStarRating rating={newProduct.rating || 4} />
             </div>
             <Typography className="mb-2 text-xl font-bold text-main">
-            ${newProduct.price.toFixed(2)}
+            ${newProduct.price}
             </Typography>
             <Typography className="mb-2 text-gray-600">
             <span className="font-semibold">Stock:</span> {newProduct.stock}

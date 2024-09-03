@@ -1,5 +1,5 @@
 export default function CardStats({
-  statSubtitle ,
+  statSubtitle,
   statTitle,
   statArrow,
   statPercent,
@@ -8,7 +8,7 @@ export default function CardStats({
 }) {
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-gray-200 rounded mb-6 xl:mb-0 shadow-lg">
+      <div className="relative flex flex-col min-w-0 break-words bg-gray-200 rounded mb-6 xl:mb-0 shadow-lg text-[var(--main-gray)]">
         <div className="flex-auto p-4">
           <div className="flex justify-between items-center">
             <div

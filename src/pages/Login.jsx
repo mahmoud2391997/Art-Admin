@@ -6,24 +6,21 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Button, Input, Typography } from "@material-tailwind/react";
-import MainButton from "../components/button/MainButton";
+import MainButton from "../components/MainButton";
 import axios from "axios";
-
 
 export default function Login() {
   const navigate = useNavigate();
   async function loginAuthentication(email, password) {
-    
     await axios
-    .post(`https://art-ecommerce-server.glitch.me/admin/auth/login`, {
-      email: email,
-      password: password,
-    })
-    .then((response) => {
-      console.log(response.data);
-      sessionStorage.setItem("token", response.data.token);
-        navigate("/home",{ replace:true});
-        
+      .post(`https://art-ecommerce-server.glitch.me/admin/auth/login`, {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response.data);
+        sessionStorage.setItem("token", response.data.token);
+        navigate("/home", { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -51,8 +48,7 @@ export default function Login() {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
-    loginAuthentication( data.email,
-          data.password,);
+    loginAuthentication(data.email, data.password);
 
     // loginAuthentication(
     //   data.email,

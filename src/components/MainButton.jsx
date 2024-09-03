@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import "./MainButton.css";
 
@@ -20,7 +22,7 @@ export default function MainButton({ title, color }) {
         strokeWidth="1"
         strokeDasharray="330% 25"
         strokeDashoffset="240%"
-        style={{ transition: "stroke-dashoffset 2s ease-in-out" }}
+        // style={{ transition: "stroke-dashoffset 2s ease-in-out" }}
       />
       <text
         x="75"

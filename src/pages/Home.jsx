@@ -4,7 +4,6 @@ import CardStats from "../components/CardStats/CardStats";
 export default function Home() {
   const arr = [
     {
-      
       statSubtitle: "Total Income",
       statTitle: "350,897",
       statArrow: "down",
@@ -38,11 +37,11 @@ export default function Home() {
     },
   ];
   return (
-    <div className="grid gap-4 w-[80%] lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 p-5">
-      {arr.map((card,index) => {
+    <div className="grid gap-4 w-full lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 p-5">
+      {arr.map((card, index) => {
         return (
           <CardStats
-          key={index}
+            key={index}
             statPercent={card.statPercent}
             statSubtitle={card.statSubtitle}
             statIconName={card.statIconName}

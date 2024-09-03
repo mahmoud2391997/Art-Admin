@@ -1,43 +1,25 @@
-import { Button } from "@material-tailwind/react";
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
 import React from "react";
-import LeftIcon from "./icons/LeftIcon";
-import RightIcon from "./icons/RightIcon";
 
-export default function Pagination({
-  handlePageChange,
-  currentPage,
-  totalPages,
-}) {
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   return (
-    <>
-      <Button
-        onClick={() => handlePageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="px-2 bg-transparent shadow-none hover:shadow-none transition-all duration-500 ease-in-out text-[var(--main-gray)] hover:text-[var(--main-color)]"
-      >
-        <LeftIcon />
-      </Button>
-
-      {[...Array(totalPages)].map((_, index) => (
-        <Button
-          key={index}
-          onClick={() => handlePageChange(index + 1)}
-          className={
+    <div className="flex justify-end mt-4">
+      {Array.from({ length: totalPages }, (_, index) => (
+        <button
+          key={index + 1}
+          onClick={() => onPageChange(index + 1)}
+          className={`px-3 py-2 mx-1 ${
             currentPage === index + 1
-              ? "underline text-sm px-3 bg-transparent shadow-none hover:shadow-none transition-all duration-500 ease-in-out text-[var(--main-color)]"
-              : "text-xs px-2 bg-transparent shadow-none hover:shadow-none transition-all duration-500 ease-in-out text-[var(--main-gray)] hover:text-[var(--main-color)]"
-          }
+              ? "bg-[#c9ab81] text-white"
+              : "bg-gray-200 text-gray-700"
+          } rounded`}
         >
           {index + 1}
-        </Button>
+        </button>
       ))}
-      <Button
-        onClick={() => handlePageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="px-2 bg-transparent shadow-none hover:shadow-none transition-all duration-500 ease-in-out text-[var(--main-gray)] hover:text-[var(--main-color)]"
-      >
-        <RightIcon />
-      </Button>
-    </>
+    </div>
   );
-}
+};
+
+export default Pagination;

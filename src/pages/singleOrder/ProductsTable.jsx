@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import emptyProduct from '../../assets/images/emptyProduct.gif'
+// import emptyProduct from '../../assets/images/emptyProduct.gif'
+import EmptyPage from "../../component/EmptyPage";
 
 export default function ProductsTable({ orderItems }) {
   return (
@@ -34,7 +35,8 @@ export default function ProductsTable({ orderItems }) {
           </div>
         ))
       ) : (
-        <img src={emptyProduct} className="flex justify-center items-center mx-auto"/>
+        <EmptyPage/>
+        // <img src={emptyProduct} className="flex justify-center items-center mx-auto"/>
       )}
     </div>
   );

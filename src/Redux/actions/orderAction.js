@@ -9,9 +9,9 @@ import {
     UPDATE_ORDER_STATUS_REQUEST,
     UPDATE_ORDER_STATUS_SUCCESS,
     UPDATE_ORDER_STATUS_FAILURE
-} from '../actionTypes.js';
+} from '../actionTypes';
 
-// دالة لجلب جميع الطلبات عبر Redux
+
 export const fetchOrders = () => {
     return async (dispatch) => {
         dispatch({ type: FETCH_ORDERS_REQUEST });
@@ -35,7 +35,7 @@ export const fetchOrders = () => {
     };
 };
 
-// دالة لجلب طلب معين عبر معرّف الطلب
+
 export const fetchOrderById = (orderId) => {
     return async (dispatch) => {
         dispatch({ type: FETCH_ORDER_BY_ID_REQUEST });

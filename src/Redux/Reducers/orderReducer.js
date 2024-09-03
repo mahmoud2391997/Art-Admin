@@ -17,6 +17,12 @@ const initialState = {
     error: ''
 };
 
+const calculateTotalSubtotal = (orders) => {
+    return orders.reduce((total, order) => {
+        return total + order.orderItems.reduce((subtotal, item) => subtotal + (item.productSubtotal || item.productPrice * item.productQuantity), 0);
+    }, 0);
+};
+
 export const ordersReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_ORDERS_REQUEST:
@@ -31,7 +37,8 @@ export const ordersReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 orders: action.payload,
-                error: ''
+                error: '',
+                totalSubtotal: calculateTotalSubtotal(action.payload) // إضافة المجموع هنا
             };
         case FETCH_ORDER_BY_ID_SUCCESS:
             return {
@@ -47,7 +54,8 @@ export const ordersReducer = (state = initialState, action) => {
                 orders: state.orders.map(order =>
                     order.id === action.payload.id ? action.payload : order
                 ),
-                error: ''
+                error: '',
+                totalSubtotal: calculateTotalSubtotal(state.orders) // تحديث المجموع هنا
             };
         case FETCH_ORDERS_FAILURE:
         case FETCH_ORDER_BY_ID_FAILURE:

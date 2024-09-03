@@ -6,7 +6,7 @@ import Home from "./pages/Home"
 import Products from "./pages/Products"
 import Users from "./pages/Users"
 import Orders from "./pages/Orders"
-import SingleOrder from "./pages/SingleOrder"
+import SingleOrder from "./pages/singleOrder/SingleOrder"
 import Layout from "./component/Layout/Layout";
 
 

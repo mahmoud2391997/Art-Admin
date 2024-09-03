@@ -5,3 +5,24 @@
 .stroke-button:hover rect {
   stroke-dashoffset: -125; /* Moves the dash to the starting position, creating the rotation effect */
 }
+@media (max-width: 768px) {
+  .stroke-button {
+    width: 120px;
+    height: 40px;
+  }
+
+  .stroke-button text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stroke-button {
+    width: 100px;
+    height: 35px;
+  }
+
+  .stroke-button text {
+    font-size: 10px;
+  }
+}

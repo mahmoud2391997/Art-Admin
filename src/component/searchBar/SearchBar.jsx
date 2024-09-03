@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-// import axios from "axios";
+
 
 export default function SearchBar({ setSearchTerm }) {
   const [input, setInput] = useState("");

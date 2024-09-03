@@ -110,7 +110,7 @@
         </div>
         <div className="flex ml-40 mt-10">
             <MainButton 
-            title="Products List" onClick={() => navigate('/products')}  />
+            title=" &#8592; Products List" onClick={() => navigate('/products')}  />
         </div>
 
         {/* Product Card */}

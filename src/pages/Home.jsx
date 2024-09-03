@@ -1,3 +1,4 @@
+import ChartsContainer from "../components/Charts/ChartsContainer";
 import React from "react";
 import CardStats from "../components/CardStats/CardStats";
 
@@ -37,18 +38,23 @@ export default function Home() {
     },
   ];
   return (
-    <div className="grid gap-4 w-full lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 p-5">
-      {arr.map((card, index) => {
-        return (
-          <CardStats
-            key={index}
-            statPercent={card.statPercent}
-            statSubtitle={card.statSubtitle}
-            statIconName={card.statIconName}
-            statArrow={card.statArrow}
-          />
-        );
-      })}
+    <div>
+      <div className="grid gap-4 w-full lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 p-5">
+        {arr.map((card, index) => {
+          return (
+            <CardStats
+              key={index}
+              statPercent={card.statPercent}
+              statSubtitle={card.statSubtitle}
+              statIconName={card.statIconName}
+              statArrow={card.statArrow}
+            />
+          );
+        })}
+      </div>
+      <div className="mt-12">
+        <ChartsContainer />
+      </div>
     </div>
   );
 }

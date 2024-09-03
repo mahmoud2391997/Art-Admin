@@ -30,6 +30,6 @@
   --logo: url("src/assets/images/logo.png");
   --page-title-font: "EB Garamond", serif;
 }
-.card {
-  padding: 2em;
+ body{
+  font-family: var(--main-font);
 }

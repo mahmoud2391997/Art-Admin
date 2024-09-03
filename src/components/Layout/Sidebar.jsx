@@ -2,14 +2,14 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import { BiSolidShoppingBag } from "react-icons/bi";
-import logo from '../../assets/images/logo-light.png';
+import logo from "../../assets/images/logo-light.png";
 import { ImUser } from "react-icons/im";
 import { IoIosListBox } from "react-icons/io";
 import { MdDashboardCustomize } from "react-icons/md";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
 export default function Sidebar({ children }) {
-  const [isOpen, setIsOpen] = useState(false); 
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ export default function Sidebar({ children }) {
 
   const menuItem = [
     {
-      path: "/",
+      path: "/home",
       name: "Dashboard",
       icon: <MdDashboardCustomize />,
     },
@@ -43,9 +43,9 @@ export default function Sidebar({ children }) {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setIsOpen(false); 
+        setIsOpen(false);
       } else {
-        setIsOpen(true); 
+        setIsOpen(true);
       }
     };
 
@@ -55,10 +55,10 @@ export default function Sidebar({ children }) {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); 
+  }, []);
 
   useEffect(() => {
-    setIsOpen(true); 
+    setIsOpen(true);
   }, [location.pathname]);
 
   return (
@@ -70,10 +70,17 @@ export default function Sidebar({ children }) {
       >
         <div className="flex items-center p-3 bg-[#c9ab81]">
           <div className="flex items-center cursor-pointer">
-            <img src={logo} onClick={() => setIsOpen(!isOpen)} className="mr-2 w-8" alt="Logo" />
+            <img
+              src={logo}
+              onClick={() => setIsOpen(!isOpen)}
+              className="mr-2 w-8"
+              alt="Logo"
+            />
             <h1
               onClick={handleLogout}
-              className={`text-xl font-Sevillana ${isOpen ? "block" : "hidden"}`}
+              className={`text-xl font-Sevillana ${
+                isOpen ? "block" : "hidden"
+              }`}
             >
               Login
             </h1>
@@ -92,7 +99,9 @@ export default function Sidebar({ children }) {
       </div>
 
       <div
-        className={`flex-grow p-5 ${isOpen ? "ml-52" : "ml-12"} overflow-y-auto h-screen`}
+        className={`flex-grow p-5 ${
+          isOpen ? "ml-52" : "ml-12"
+        } overflow-y-auto h-screen`}
       >
         {children}
       </div>

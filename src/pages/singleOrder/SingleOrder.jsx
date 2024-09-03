@@ -57,7 +57,7 @@ export default function SingleOrder() {
   }
 
   return (
-    <div className="p-4 sm:p-6 md:p-8 max-w-6xl mx-auto">
+    <div className="p-4 sm:p-6 md:p-8 ">
       <Link to="/orders" className="mt-4 inline-block">
         <BiArrowBack className="text-[#c9ab81] text-2xl sm:text-3xl md:text-4xl" />
       </Link>
@@ -70,11 +70,15 @@ export default function SingleOrder() {
         <div className="space-y-4">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
             <p className="border-b-2 p-1 ml-0 md:ml-4 text-sm font-bold text-[#c9ab81]">
-              <strong className="font-eb-garamond text-[#525252] text-lg md:text-xl">Order Date:</strong>{" "}
+              <strong className="font-eb-garamond text-[#525252] text-lg md:text-xl">
+                Order Date:
+              </strong>{" "}
               {new Date(orderItems.orderDate).toLocaleDateString()}
             </p>
             <p className="mt-2 md:mt-0">
-              <strong className="font-eb-garamond text-[#525252] text-lg md:text-xl">Status:</strong>
+              <strong className="font-eb-garamond text-[#525252] text-lg md:text-xl">
+                Status:
+              </strong>
               <select
                 value={selectedStatus}
                 onChange={handleStatusChange}
@@ -89,13 +93,11 @@ export default function SingleOrder() {
             </p>
           </div>
 
-         
           <ProductsTable orderItems={orderItems} />
 
           <OrdersTotals orderItems={orderItems} />
         </div>
 
-       
         <div className="bg-white p-4 rounded shadow">
           <CustomerInformation customer={orderItems.customer} />
         </div>

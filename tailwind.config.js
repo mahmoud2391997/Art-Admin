@@ -9,8 +9,8 @@ module.exports = withMT({
     extend: {
       fontFamily: {
         "eb-garamond": ['"EB Garamond"', "serif"],
-         "Playwrite-CU": ['"Playwrite CU"',"cursive"],
-         "Sevillana" :['"Sevillana"', "cursive"],
+        "Playwrite-CU": ['"Playwrite CU"', "cursive"],
+        Sevillana: ['"Sevillana"', "cursive"],
       },
       keyframes: {
         moveVertical: {

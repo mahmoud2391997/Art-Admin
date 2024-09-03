@@ -2,6 +2,7 @@ import { ADD_PRODUCT, FETCH_PRODUCTS, FETCH_PRODUCT_BY_ID, DELETE_PRODUCT, EDIT_
 import { addProduct, fetchProducts, fetchProductById, deleteProduct, editProduct } from "../api/productsApi";
 
 export const addProductAction = (product) => async (dispatch) => {
+    dispatch({ type: 'LOADING' });
     try {
         const newProduct = await addProduct(product);
         dispatch({
@@ -10,10 +11,12 @@ export const addProductAction = (product) => async (dispatch) => {
         });
     } catch (error) {
         console.log('Error Adding Product', error);
+        dispatch({ type: 'ERROR', payload: error.message });
     }
 };
 
 export const fetchProductsAction = () => async (dispatch) => {
+    dispatch({ type: 'LOADING' });
     try {
         const products = await fetchProducts();
         dispatch({
@@ -22,22 +25,12 @@ export const fetchProductsAction = () => async (dispatch) => {
         });
     } catch (error) {
         console.log('Error Fetching Products', error);
+        dispatch({ type: 'ERROR', payload: error.message });
     }
 };
 
 export const fetchProductByIdAction = (productId) => async (dispatch, getState) => {
-    // Check if the product is in local storage
-    const storedProduct = localStorage.getItem(`product_${productId}`);
-    
-    if (storedProduct) {
-        // If found in local storage then dispatch it to Redux
-        const product = JSON.parse(storedProduct);
-        dispatch({
-            type: FETCH_PRODUCT_BY_ID,
-            payload: product,
-        });
-        return;
-    }
+    dispatch({ type: 'LOADING' });
 
     // If not found in local storage, check Redux state
     const { products } = getState().products;
@@ -56,7 +49,7 @@ export const fetchProductByIdAction = (productId) => async (dispatch, getState) 
 
     // If not found in either, fetch from the API
     try {
-        const product = await fetchProductByID(productId);
+        const product = await fetchProductById(productId);
         // Store the fetched product in local storage
         localStorage.setItem(`product_${productId}`, JSON.stringify(product));
         dispatch({
@@ -65,10 +58,12 @@ export const fetchProductByIdAction = (productId) => async (dispatch, getState) 
         });
     } catch (error) {
         console.log('Error Fetching Product', error);
+        dispatch({ type: 'ERROR', payload: error.message });
     }
 };
 
 export const deleteProductAction = (productId) => async (dispatch) => {
+    dispatch({ type: 'LOADING' });
     try {
         await deleteProduct(productId);
         dispatch({
@@ -77,17 +72,26 @@ export const deleteProductAction = (productId) => async (dispatch) => {
         });
     } catch (error) {
         console.log('Error Deleting Product', error);
+        dispatch({ type: 'ERROR', payload: error.message });
     }
 };
 
 export const editProductAction = (productId, editedProduct) => async (dispatch) => {
+    dispatch({ type: 'LOADING' });
     try {
         const updatedProduct = await editProduct(productId, editedProduct);
         dispatch({
             type: EDIT_PRODUCT,
             payload: updatedProduct
         })
+        // to make sure the latest data is in the stoer
+        const fetchedProduct = await fetchProductById(productId);  
+        dispatch({  
+            type: FETCH_PRODUCT_BY_ID,  
+            payload: fetchedProduct  
+        });
     } catch (error) {
         console.log('Error Editing Product', error);
+        dispatch({ type: 'ERROR', payload: error.message });
     }
 }

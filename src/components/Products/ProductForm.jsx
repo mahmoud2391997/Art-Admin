@@ -64,7 +64,7 @@ export default function ProductForm({ open, isEditing, newProduct, setNewProduct
                             type="text"  
                             placeholder="Category Name"  
                             value={newProduct.categoryName}  
-                            onChange={(e) => setNewProduct({ ...newProduct, categoryName: e.target.value })}  
+                            onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}  
                             className="w-full border-b border-gray-400 p-2 placeholder-gray-500"  
                         />  
                     </div>  

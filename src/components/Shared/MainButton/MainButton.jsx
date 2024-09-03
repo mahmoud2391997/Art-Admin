@@ -2,8 +2,9 @@
 import React from "react";
 import "./MainButton.css";
 
+
 // eslint-disable-next-line react/prop-types
-export default function MainButton({ title, className, onClick }) {
+export default function MainButton({ title, className, onClick, icon }) {
 return (
     <svg
     width="150"
@@ -13,6 +14,7 @@ return (
     className={`stroke-button ${className}`}  
     onClick={onClick}  
     style={{ cursor: "pointer" }}  
+    icon={icon}
     >
     <rect
         x="5"

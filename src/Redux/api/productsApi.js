@@ -6,7 +6,7 @@ export const addProduct = async (product) => {
         `https://art-ecommerce-server.glitch.me/admin/products`, product,
         {headers:{
             'Content-Type': 'application/json',
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTA5NTkwMCwiZXhwIjoxNzI1MzU1MTAwfQ.s9cTTHR0gblX-JAnEQ612qNb3UbcrpYS2oDY6dlixWc`
+            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTI2OTE4NywiZXhwIjoxNzI1NTI4Mzg3fQ.AM-MKmkofBTOucmj-9ImCaSATnH0eBWwrgSdCuh_fzA`
         }}
         )
         return response.data;
@@ -42,7 +42,7 @@ export const deleteProduct = async (productId) => {
         `https://art-ecommerce-server.glitch.me/api/products/${productId}`,
         {headers:{
             'Content-Type': 'application/json',
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTA5NTkwMCwiZXhwIjoxNzI1MzU1MTAwfQ.s9cTTHR0gblX-JAnEQ612qNb3UbcrpYS2oDY6dlixWc`
+            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTI2OTE4NywiZXhwIjoxNzI1NTI4Mzg3fQ.AM-MKmkofBTOucmj-9ImCaSATnH0eBWwrgSdCuh_fzA`
         }}
         )
         return response.data;
@@ -58,7 +58,7 @@ export const editProduct = async (productId, editedProduct) => {
         `https://art-ecommerce-server.glitch.me/api/products/${productId}`,
         editedProduct,{headers:{
             'Content-Type': 'application/json',
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTA5NTkwMCwiZXhwIjoxNzI1MzU1MTAwfQ.s9cTTHR0gblX-JAnEQ612qNb3UbcrpYS2oDY6dlixWc`
+            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTI2OTE4NywiZXhwIjoxNzI1NTI4Mzg3fQ.AM-MKmkofBTOucmj-9ImCaSATnH0eBWwrgSdCuh_fzA`
         }}
         )
         return response.data;

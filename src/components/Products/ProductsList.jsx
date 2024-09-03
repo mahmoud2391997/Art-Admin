@@ -18,10 +18,11 @@ const ProductList = () => {
     const [newProduct, setNewProduct] = useState({     
         name: '',   
         description: '',   
-        price: 0,  // Initialize stock as a number  
+        price: 0,
+        stock: 0,
         image: '',   
         status: '',   
-        categoryName: ''  
+        category: ''  
     });  
     const [showConfirmDelete, setShowConfirmDelete] = useState(false);  
     const [productToDelete, setProductToDelete] = useState(null);  
@@ -30,7 +31,7 @@ const ProductList = () => {
     useEffect(() => {  
         const fetchData = async () => {  
             setLoading(true);   
-            dispatch(fetchProductsAction());  
+        await dispatch(fetchProductsAction());  
             setLoading(false);  
         };  
         fetchData();  
@@ -49,29 +50,31 @@ const ProductList = () => {
         setIsEditing(true);  
     };  
 
-    const handleUpdate = () => {  
+    const handleUpdate = async() => {  
         if (newProduct._id) {  
-            dispatch(editProductAction(newProduct._id, newProduct));  
+            await dispatch(editProductAction(newProduct._id, newProduct));  
+            await dispatch(fetchProductsAction());  
             resetForm();  
             setIsEditing(false);  
         }  
     };  
 
-    const handleAddProduct = () => {  
-        dispatch(addProductAction(newProduct));  
+    const handleAddProduct = async() => {  
+        await dispatch(addProductAction(newProduct));  
         resetForm();  
         setIsAdding(false);  
+        await dispatch(fetchProductsAction());   
     };  
 
     const resetForm = () => {  
         setNewProduct({   
             name: '',   
             description: '',   
-            price: 0,  // Initialize price as a number  
-            stock: 0,  // Initialize stock as a number  
+            price: 0,  
+            stock: 0,    
             image: '',   
             status: '',   
-            categoryName: ''   
+            category: ''   
         });  
     };  
 

@@ -1,6 +1,25 @@
+import { useState } from 'react';
 import { Button, Input, Dialog, DialogBody, DialogFooter, DialogHeader } from '@material-tailwind/react';  
 
-export default function ProductForm({ open, isEditing, newProduct, setNewProduct, onSave, onClose, isSubmitting }) {  
+export default function ProductForm({ open, isEditing, newProduct, setNewProduct, onSave, onClose, isSubmitting }) {
+    
+    const [isAddingNewCategory, setIsAddingNewCategory] = useState(false);
+
+    const handleCategoryChange = (e) => {
+        const selectedValue = e.target.value;
+        if (selectedValue === 'add-new') {
+            setIsAddingNewCategory(true);
+            setNewProduct({ ...newProduct, category: '' }); 
+        } else {
+            setIsAddingNewCategory(false);
+            setNewProduct({ ...newProduct, category: selectedValue });
+        }
+    };
+
+    const handleCategoryInputChange = (e) => {
+        setNewProduct({ ...newProduct, category: e.target.value });
+    };
+
     return (  
         <Dialog open={open} handler={onClose} className="relative z-40 bg-white max-w-xl mx-auto shadow-xl">  
             <DialogBody>  
@@ -53,20 +72,39 @@ export default function ProductForm({ open, isEditing, newProduct, setNewProduct
                             onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}  
                             className="w-full border-b border-gray-400 p-2 placeholder-gray-500"  
                         />  
-                        <input  
-                            type="text"  
-                            placeholder="Status"  
-                            value={newProduct.status}  
-                            onChange={(e) => setNewProduct({ ...newProduct, status: e.target.value })}  
-                            className="w-full border-b border-gray-400 p-2 placeholder-gray-500"  
-                        />  
-                        <input  
-                            type="text"  
-                            placeholder="Category Name"  
-                            value={newProduct.categoryName}  
-                            onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}  
-                            className="w-full border-b border-gray-400 p-2 placeholder-gray-500"  
-                        />  
+                        <select
+                            value={newProduct.status}
+                            onChange={(e) => setNewProduct({ ...newProduct, status: e.target.value })}
+                            className="w-full border-b border-gray-400 p-2 placeholder-gray-500"
+                            required
+                        >
+                            <option value="" disabled>Select Status</option>
+                            <option value="available">Available</option>
+                            <option value="out of stock">Out of Stock</option>
+                        </select> 
+                        <select
+                            value={isAddingNewCategory ? 'add-new' : newProduct.category}
+                            onChange={handleCategoryChange}
+                            className="w-full border-b border-gray-400 p-2 placeholder-gray-500"
+                            required
+                        >
+                            <option value="" disabled>Select Category</option>
+                            <option value="Sculptures">Sculptures</option>
+                            <option value="Paintings">Paintings</option>
+                            <option value="Pottery">Pottery</option>
+                            <option value="Ceramics">Ceramics</option>
+                            <option value="add-new">Add New Category</option>
+                        </select>
+                        {isAddingNewCategory && (
+                            <input
+                                type="text"
+                                placeholder="New Category Name"
+                                value={newProduct.category}
+                                onChange={handleCategoryInputChange}
+                                className="w-full border-b border-gray-400 p-2 placeholder-gray-500"
+                                required
+                            />
+                        )}
                     </div>  
                 </div>  
             </DialogBody>  

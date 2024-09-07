@@ -18,12 +18,16 @@
     import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
     import ProductForm from "../Products/ProductForm";
     import ConfirmDelete from "../Products/ConfirmDelete";
-    import titleImg from "../../assets/images/title-img.jpeg";
     import StaticStarRating from "../Shared/StaticStarRating";
     import SingleProductTabs from "../Shared/SingleProductTabs";
     import MainButton from "../Shared/MainButton/MainButton";
 
     export default function SingleProductContainer() {
+    const [isEditing, setIsEditing] = useState(false);
+    const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+    const [newProduct, setNewProduct] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const { productId } = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -32,9 +36,6 @@
     (state) => state.products
     );
 
-    const [isEditing, setIsEditing] = useState(false);
-    const [showConfirmDelete, setShowConfirmDelete] = useState(false);
-    const [newProduct, setNewProduct] = useState(null);
 
     useEffect(() => {
     dispatch(fetchProductByIdAction(productId));
@@ -56,14 +57,18 @@
     };
 
     const handleUpdate = async() => {
+        setIsSubmitting(true);
         await dispatch(editProductAction(newProduct._id, newProduct));
+        setIsSubmitting(false);
         setIsEditing(false);
     };
 
     const handleDelete = async() => {
-    dispatch(deleteProductAction(selectedProduct._id));
-    setShowConfirmDelete(false);
-    navigate("/products"); 
+        setIsSubmitting(true);
+        await dispatch(deleteProductAction(selectedProduct._id));
+        setIsSubmitting(false);
+        setShowConfirmDelete(false);
+        navigate("/products");
     };
 
     const handleCancelEdit = () => {
@@ -95,26 +100,13 @@
 
     return (
     <div className="relative bg-white flex flex-col items-center pb-16 mb-10">
-        {/* Header Image */}
-        {/* <div className="relative w-full h-40 overflow-hidden bg-white">
-        <img
-            className="absolute inset-0 w-full h-full object-cover"
-            src={titleImg}
-            alt="Product Detail"
-        />
-        <div className="absolute top-1/2 left-0 z-10 w-full text-start transform -translate-y-1/2">
-            <h3 className="text-2xl md:text-4xl p-4 font-eb-garamond text-white uppercase tracking-wide leading-tight shadow-md">
-            Product Detail
-            </h3>
-        </div>
-        </div> */}
         <div className="flex ml-40 mt-10">
             <MainButton 
             title=" &#8592; Products List" onClick={() => navigate('/products')}  />
         </div>
 
         {/* Product Card */}
-        <Card className="w-full max-w-5xl mt-8 flex flex-col md:flex-row rounded-lg shadow-lg overflow-hidden">
+        <Card className="w-full max-w-5xl mt-8 flex flex-col md:flex-row shadow-lg overflow-hidden">
         <CardHeader
             shadow={false}
             floated={false}
@@ -131,12 +123,12 @@
             <Typography
                 variant="h4"
                 color="blue-gray"
-                className="uppercase font-semibold"
+                className="uppercase font-semibold font-eb-garamond"
             >
                 {newProduct.name}
             </Typography>
             <div className="flex gap-2">
-                <Button
+                <button
                 onClick={handleEditClick}
                 variant="text"
                 color="blue"
@@ -144,8 +136,8 @@
                 >
                 <FontAwesomeIcon icon={faEdit} />
                 Edit
-                </Button>
-                <Button
+                </button>
+                <button
                 onClick={handleDeleteClick}
                 variant="text"
                 color="red"
@@ -153,25 +145,25 @@
                 >
                 <FontAwesomeIcon icon={faTrash} />
                 Delete
-                </Button>
+                </button>
             </div>
             </div>
             <div className="mb-4">
             <StaticStarRating rating={newProduct.rating || 4} />
             </div>
-            <Typography className="mb-2 text-xl font-bold text-main">
+            <Typography className="mb-2 text-xl font-bold text-main font-eb-garamond">
             ${newProduct.price}
             </Typography>
-            <Typography className="mb-2 text-gray-600">
+            <Typography className="mb-2 text-gray-600 font-eb-garamond">
             <span className="font-semibold">Stock:</span> {newProduct.stock}
             </Typography>
-            <Typography color="gray" className="mt-4 mb-8">
+            <Typography color="gray" className="mt-4 mb-8 font-eb-garamond">
             {newProduct.description}
             </Typography>
-            <Typography className="mb-2 font-medium text-gray-700">
+            <Typography className="mb-2 font-medium text-gray-700 font-eb-garamond">
             <span className="font-semibold">Status:</span> {newProduct.status}
             </Typography>
-            <Typography className="mb-2 font-medium text-gray-700">
+            <Typography className="mb-2 font-medium text-gray-700 font-eb-garamond">
             <span className="font-semibold">Category:</span>{" "}
             {newProduct.categoryName || "N/A"}
             </Typography>
@@ -192,6 +184,7 @@
             setNewProduct={setNewProduct}
             onSave={handleUpdate}
             onClose={handleCancelEdit}
+            isSubmitting={isSubmitting}
         />
         )}
 

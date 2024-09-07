@@ -42,7 +42,7 @@ export default function Sidebar({ children }) {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 918) {
         setIsOpen(false);
       } else {
         setIsOpen(true);

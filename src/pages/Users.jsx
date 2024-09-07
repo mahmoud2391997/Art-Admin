@@ -98,32 +98,31 @@ export default function Users() {
 
         {pageCustomers.length
           ? pageCustomers.map((customer, key) => (
-              <div
-                className={`grid bg-white sm:text-sm  grid-cols-6 h-20 border-b border-gray-300  py-4.5  dark:border-strokedark sm:grid-cols-7 md:px-6 2xl:px-7.5`}
-                key={key}
-              >
-                <div className="col-span-1 flex items-center">
-                  <p className=" text-black dark:text-white text-center w-full text-xs md:text-base">
-                    {customer.name}
-                  </p>
-                </div>
-                <div className="col-span-2 hidden items-center sm:flex">
-                  <p className=" text-black dark:text-white text-center w-full  text-xs md:text-base">
-                    {customer.address}
-                  </p>
-                </div>
-                <div className="col-span-2 flex items-center">
-                  <p className=" text-black dark:text-white text-center w-full  text-xs  md:text-base">
-                    {customer.phone}
-                  </p>
-                </div>
-
-                <div className="col-span-2 flex items-center">
-                  <p className=" text-meta-3 text-center w-full  text-xs md:text-base">
-                    {customer.email}
-                  </p>
-                </div>
-              </div>
+            <div
+            className={`grid bg-white sm:text-sm grid-cols-6 h-20 border-b border-gray-300 py-4.5 dark:border-strokedark sm:grid-cols-7 md:px-6 2xl:px-7.5`}
+            key={key}
+          >
+            <div className="col-span-1 flex items-center">
+              <p className="text-black  text-center w-full text-xs md:text-base">
+                {customer.name}
+              </p>
+            </div>
+            <div className="col-span-2 hidden items-center sm:flex">
+              <p className="text-black d text-center w-full text-xs md:text-base">
+                {customer.address}
+              </p>
+            </div>
+            <div className="col-span-2 flex items-center">
+              <p className="text-black  text-center w-full text-xs md:text-base">
+                {customer.phone}
+              </p>
+            </div>
+            <div className="col-span-2 flex items-center">
+              <p className="text-meta-3 text-center w-full text-xs md:text-base">
+                {customer.email}
+              </p>
+            </div>
+          </div>
             ))
           : null}
       </div>

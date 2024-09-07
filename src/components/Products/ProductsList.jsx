@@ -19,6 +19,7 @@ const ProductList = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [isEditing, setIsEditing] = useState(false);  
     const [isAdding, setIsAdding] = useState(false);  
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [editingProduct, setEditingProduct] = useState(null);  
     const [newProduct, setNewProduct] = useState({     
         name: '',   
@@ -82,21 +83,25 @@ const ProductList = () => {
     };  
 
     const handleUpdate = async() => {  
-        if (newProduct._id) {  
+        if (newProduct._id) {
+            setIsSubmitting(true);  
             await dispatch(editProductAction(newProduct._id, newProduct));  
             await dispatch(fetchProductsAction());  
             resetForm();  
-            setIsEditing(false);  
+            setIsEditing(false);
+            setIsSubmitting(false);  
         }  
     };  
 
-    const handleAddProduct = async () => {  
+    const handleAddProduct = async () => {
+        setIsSubmitting(true);  
         await dispatch(addProductAction(newProduct));  
         await dispatch(fetchProductsAction());
     
         setCurrentPage(1);
         resetForm();  
-        setIsAdding(false);  
+        setIsAdding(false);
+        setIsSubmitting(false);  
     };
     
     const handlePageChange = (pageNumber) => {
@@ -178,14 +183,16 @@ const ProductList = () => {
                     setIsEditing(false);   
                     resetForm();  
                 }}  
-                className="mb-6"   
+                className="mb-6"
+                isSubmitting={isSubmitting}
             />  
 
             <ConfirmDelete  
                 open={showConfirmDelete}  
                 onConfirm={handleDelete}  
                 onCancel={() => setShowConfirmDelete(false)}  
-                className="mb-6"  
+                className="mb-6"
+                isSubmitting={isSubmitting}  
             />
             <div className='w-full flex justify-center mt-6'>
                 {totalPages > 1 && (
@@ -197,6 +204,7 @@ const ProductList = () => {
                 )}
             </div>  
         </div>  
+
     );  
 };  
 

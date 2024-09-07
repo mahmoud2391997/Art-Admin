@@ -14,28 +14,28 @@ export default function ConfirmDelete({ open, onConfirm, onCancel }) {
       handler={onCancel}
       className="max-w-md mx-auto h-52 bg-white rounded-lg shadow-lg"
     >
-      <DialogHeader className="text-lg font-semibold text-gray-800">
+      <DialogHeader className="text-lg font-semibold font-eb-garamond text-gray-800">
         Confirm Delete
       </DialogHeader>
       <DialogBody className="flex items-center justify-center">
-        <Typography variant="h6" color="blue-gray" className="text-center">
+        <Typography variant="h6" color="blue-gray" className="text-center text-xl font-eb-garamond">
           Are you sure you want to delete this product? This action cannot be
           undone.
         </Typography>
       </DialogBody>
       <DialogFooter className="flex justify-end">
-        <Button
+        <button
           onClick={onCancel}
-          className="mr-8 text-black capitalize hover:text-gray-500 transition duration-200 bg-white"
+          className="mr-8 text-black capitalize font-eb-garamond hover:text-gray-500 transition duration-200 bg-white"
         >
           Cancel
-        </Button>
-        <Button
+        </button>
+        <button
           onClick={onConfirm}
-          className="mr-8 text-black text-main capitalize hover:text-red-700 transition duration-200 bg-white"
+          className="mr-8 text-black font-eb-garamond font-bold text-main capitalize hover:text-red-700 transition duration-200 bg-white"
         >
           Delete
-        </Button>
+        </button>
       </DialogFooter>
     </Dialog>
   );

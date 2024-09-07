@@ -3,11 +3,10 @@ import {
   RouterProvider,
   useLocation,
 } from "react-router-dom";
-import store from "./Redux/store";
-import { Provider } from "react-redux";
 //pages
 import Home from "./pages/Home";
 import Products from "./pages/Products";
+import SingleProduct from "./pages/SingleProduct";
 import Users from "./pages/Users";
 import Orders from "./pages/Orders";
 import SingleOrder from "./pages/singleOrder/SingleOrder";
@@ -21,6 +20,7 @@ const router = createBrowserRouter([
     children: [
       { path: "home", element: <Home /> },
       { path: "products", element: <Products /> },
+      { path: "products/:productId", element: <SingleProduct /> },
       { path: "users", element: <Users /> },
       { path: "orders", element: <Orders /> },
       { path: "orders/:id", element: <SingleOrder /> },
@@ -31,12 +31,7 @@ const router = createBrowserRouter([
 export default function App() {
   return (
     <>
-      <Provider store={store}>
-        {" "}
-        {/* لفّ التطبيق بمكون Provider وتمرير المخزن */}
         <RouterProvider router={router} />
-      </Provider>
-      {/* <RouterProvider  router={router}/> */}
     </>
   );
 }

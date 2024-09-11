@@ -1,49 +1,47 @@
 import ChartsContainer from "../components/Charts/ChartsContainer";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardStats from "../components/CardStats/CardStats";
+import axios from "axios";
 
 export default function Home() {
-  const arr = [
-    {
-      statSubtitle: "Total Income",
-      statTitle: "350,897",
-      statArrow: "down",
-      statPercent: "3.48",
-      statDescripiron: "Since last month",
-      statIconName: "Income",
-    },
-    {
-      statSubtitle: "Total Profit",
-      statTitle: "350,897",
-      statArrow: "down",
-      statPercent: "3.48",
-      statDescripiron: "Since last month",
-      statIconName: "Profit",
-    },
-    {
-      statSubtitle: "Total Sales",
-      statTitle: "350,897",
-      statArrow: "up",
-      statPercent: "3.48",
-      statDescripiron: "Since last month",
-      statIconName: "Sales",
-    },
-    {
-      statSubtitle: "Total Visitors",
-      statTitle: "350,897",
-      statArrow: "up",
-      statPercent: "12.3",
-      statDescripiron: "Since last month",
-      statIconName: "View",
-    },
-  ];
+  const [cardStatArr, setCardStatArr] = useState([]);
+  const [lineChartData, setLineChartData] = useState([]);
+  const [pieChartData, setPieChartData] = useState([]);
+  async function getDashboardData() {
+    let token = sessionStorage.getItem("token");
+
+    await axios
+      .get("https://art-ecommerce-server.glitch.me/admin/statistics", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+
+        setCardStatArr([
+          response.data.income,
+          response.data.profit,
+          response.data.sales,
+          response.data.visitors,
+        ]);
+        setLineChartData(response.data.lineChartData);
+        setPieChartData(response.data.pieChartData);
+      });
+  }
+  useEffect(() => {
+    getDashboardData();
+  }, []);
   return (
     <div>
       <div className="grid gap-4 w-full lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 p-5">
-        {arr.map((card, index) => {
+        {cardStatArr.map((card, index) => {
           return (
             <CardStats
               key={index}
+              statTitle={card.statTitle}
+              statDescripiron={card.statDescripiron}
               statPercent={card.statPercent}
               statSubtitle={card.statSubtitle}
               statIconName={card.statIconName}
@@ -53,7 +51,10 @@ export default function Home() {
         })}
       </div>
       <div className="mt-12">
-        <ChartsContainer />
+        <ChartsContainer
+          pieChartData={pieChartData}
+          lineChartData={lineChartData}
+        />
       </div>
     </div>
   );

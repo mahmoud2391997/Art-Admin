@@ -38,7 +38,7 @@ export const ordersReducer = (state = initialState, action) => {
                 loading: false,
                 orders: action.payload,
                 error: '',
-                totalSubtotal: calculateTotalSubtotal(action.payload) // إضافة المجموع هنا
+                totalSubtotal: calculateTotalSubtotal(action.payload) 
             };
         case FETCH_ORDER_BY_ID_SUCCESS:
             return {
@@ -55,7 +55,7 @@ export const ordersReducer = (state = initialState, action) => {
                     order.id === action.payload.id ? action.payload : order
                 ),
                 error: '',
-                totalSubtotal: calculateTotalSubtotal(state.orders) // تحديث المجموع هنا
+                totalSubtotal: calculateTotalSubtotal(state.orders) 
             };
         case FETCH_ORDERS_FAILURE:
         case FETCH_ORDER_BY_ID_FAILURE:

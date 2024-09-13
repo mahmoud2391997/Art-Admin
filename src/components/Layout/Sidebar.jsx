@@ -2,11 +2,12 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import { BiSolidShoppingBag } from "react-icons/bi";
-import logo from "../../assets/images/logo-light.png";
 import { ImUser } from "react-icons/im";
 import { IoIosListBox } from "react-icons/io";
 import { MdDashboardCustomize } from "react-icons/md";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { RiLogoutCircleLine } from "react-icons/ri";
+import Logo from "../Logo";
 
 export default function Sidebar({ children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +15,7 @@ export default function Sidebar({ children }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    navigate("/login");
+    navigate("/");
   };
 
   const menuItem = [
@@ -57,9 +58,9 @@ export default function Sidebar({ children }) {
     };
   }, []);
 
-  useEffect(() => {
-    setIsOpen(true);
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   setIsOpen(true);
+  // }, [location.pathname]);
 
   return (
     <div className="relative flex z-40">
@@ -70,19 +71,15 @@ export default function Sidebar({ children }) {
       >
         <div className="flex items-center p-3 bg-[#c9ab81]">
           <div className="flex items-center cursor-pointer">
-            <img
-              src={logo}
-              onClick={() => setIsOpen(!isOpen)}
-              className="mr-2 w-8"
-              alt="Logo"
-            />
+            <Logo  onClick={() => setIsOpen(!isOpen)} />
+            
             <h1
-              onClick={handleLogout}
-              className={`text-xl font-Sevillana ${
+             
+              className={`text-xl font-eb-garamond ${
                 isOpen ? "block" : "hidden"
               }`}
             >
-              Login
+              Artix
             </h1>
           </div>
         </div>
@@ -96,6 +93,18 @@ export default function Sidebar({ children }) {
             <div className={`${isOpen ? "block" : "hidden"}`}>{item.name}</div>
           </NavLink>
         ))}
+        <div className="absolute bottom-10 w-full p-3 cursor-pointer flex items-center gap-2"> 
+          <RiLogoutCircleLine  className="text-xl" onClick={handleLogout}/>
+      <h1
+              onClick={handleLogout}
+              className={`text-xl font-Sevillana ${
+                isOpen ? "block" : "hidden"
+              }`}
+            >
+              logout
+            </h1>
+        </div>
+        
       </div>
 
       <div

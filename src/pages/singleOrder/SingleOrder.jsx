@@ -23,7 +23,7 @@ export default function SingleOrder() {
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTI2OTE4NywiZXhwIjoxNzI1NTI4Mzg3fQ.AM-MKmkofBTOucmj-9ImCaSATnH0eBWwrgSdCuh_fzA",
+            `Bearer ${sessionStorage.getItem("token")}`,
         },
       })
       .then((response) => {
@@ -66,7 +66,7 @@ export default function SingleOrder() {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-        {/* قسم التفاصيل اليسار */}
+     
         <div className="space-y-4">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
             <p className="border-b-2 p-1 ml-0 md:ml-4 text-sm font-bold text-[#c9ab81]">

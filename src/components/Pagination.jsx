@@ -2,24 +2,67 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+export default function Pagination ({ currentPage, totalPages, onPageChange }) {
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      onPageChange(page);
+    }
+  };
+
+  const getPageNumbers = () => {
+    const pages = [];
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = Math.min(totalPages, currentPage + 2);
+
+    if (currentPage <= 2) {
+      endPage = Math.min(4, totalPages);
+    }
+    if (currentPage >= totalPages - 1) {
+      startPage = Math.max(totalPages - 3, 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+
+    return pages;
+  };
+
+  const pageNumbers = getPageNumbers();
+
   return (
-    <div className="flex justify-end mt-4">
-      {Array.from({ length: totalPages }, (_, index) => (
+    <div className="flex items-center justify-center mt-4">
+      <button
+        className="px-4 py-2   text-gray-600 hover:text-[#c9ab81] "
+        onClick={() => handlePageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+      >
+        &lt;
+      </button>
+
+      {pageNumbers.map((page) => (
         <button
-          key={index + 1}
-          onClick={() => onPageChange(index + 1)}
-          className={`px-3 py-2 mx-1 ${
-            currentPage === index + 1
-              ? "bg-[#c9ab81] text-white"
-              : "bg-gray-200 text-gray-700"
-          } rounded`}
+          key={page}
+          className={`px-4 py-2 border border-gray-300 rounded-md ${
+            page === currentPage
+              ? "bg-[#c9ab81] text-gray-800"
+              : "bg-white text-gray-600 hover:bg-gray-100"
+          }`}
+          onClick={() => handlePageChange(page)}
         >
-          {index + 1}
+          {page}
         </button>
       ))}
+
+      <button
+        className="px-4 py-2 text-gray-600 hover:text-[#c9ab81] "
+        onClick={() => handlePageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+      >
+        &gt;
+      </button>
     </div>
   );
 };
 
-export default Pagination;
+

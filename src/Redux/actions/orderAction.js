@@ -19,7 +19,7 @@ export const fetchOrders = () => {
             const response = await axios.get('https://art-ecommerce-server.glitch.me/admin/orders', {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTI2OTE4NywiZXhwIjoxNzI1NTI4Mzg3fQ.AM-MKmkofBTOucmj-9ImCaSATnH0eBWwrgSdCuh_fzA'
+                    'Authorization': `Bearer ${sessionStorage.getItem("token")}`
                 }
             });
             dispatch({
@@ -43,7 +43,7 @@ export const fetchOrderById = (orderId) => {
             const response = await axios.get(`https://art-ecommerce-server.glitch.me/admin/orders/${orderId}`, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTI2OTE4NywiZXhwIjoxNzI1NTI4Mzg3fQ.AM-MKmkofBTOucmj-9ImCaSATnH0eBWwrgSdCuh_fzA'
+                    'Authorization': `Bearer ${sessionStorage.getItem("token")}`
                 }
             });
             dispatch({
@@ -59,7 +59,7 @@ export const fetchOrderById = (orderId) => {
     };
 };
 
-// دالة لتحديث حالة الطلب
+
 export const updateOrderStatus = (orderId, newStatus) => {
     return async (dispatch) => {
         dispatch({ type: UPDATE_ORDER_STATUS_REQUEST });
@@ -70,7 +70,7 @@ export const updateOrderStatus = (orderId, newStatus) => {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTI2OTE4NywiZXhwIjoxNzI1NTI4Mzg3fQ.AM-MKmkofBTOucmj-9ImCaSATnH0eBWwrgSdCuh_fzA'
+                        'Authorization': `Bearer ${sessionStorage.getItem("token")}`
                     }
                 }
             );

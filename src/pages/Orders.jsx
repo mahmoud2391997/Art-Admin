@@ -88,7 +88,7 @@ export default function Orders() {
                 </div>
                 <div className="flex items-center justify-center md:flex">
                   <span
-                    className={`w-2.5 h-2.5 rounded-full mr-2 ${
+                    className={`w-2.5 h-2.5 rounded-full mr-6 ${
                       order.orderStatus === "Delivered"
                         ? "bg-green-500"
                         : order.orderStatus === "Shipping"
@@ -100,7 +100,7 @@ export default function Orders() {
                         : "bg-gray-500"
                     }`}
                   ></span>
-                  <span className="text-sm font-medium">
+                  <span className="text-sm font-medium mr-4">
                     {order.orderStatus}
                   </span>
                 </div>

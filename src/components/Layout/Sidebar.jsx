@@ -19,21 +19,17 @@ export default function Sidebar({ children }) {
   };
 
   const menuItem = [
-    {
-      path: "/home",
-      name: "Dashboard",
-      icon: <MdDashboardCustomize />,
-    },
-    {
-      path: "/users",
-      name: "Users",
-      icon: <ImUser />,
-    },
+  
     {
       path: "/products",
       name: "Products",
       icon: <IoIosListBox />,
+    }, {
+      path: "/users",
+      name: "Users",
+      icon: <ImUser />,
     },
+    
     {
       path: "/orders",
       name: "Orders",

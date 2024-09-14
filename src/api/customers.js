@@ -4,7 +4,7 @@ function getCustomers(token) {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }})
-      .then((response) => console.log(response.data))
+      .then((response) => (response.data))
       .catch((error) => {
         console.error(error);
       });

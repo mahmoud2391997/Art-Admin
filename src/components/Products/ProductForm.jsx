@@ -21,22 +21,12 @@ export default function ProductForm({ open, isEditing, newProduct, setNewProduct
     };
 
     return (  
-        <Dialog open={open} handler={onClose} className="relative z-40 bg-white max-w-xl mx-auto shadow-xl">  
+        <Dialog open={open} handler={onClose} className="relative z-40  bg-white max-w-xl mx-auto shadow-xl">  
             <DialogBody>  
-                <div className="p-8 font-eb-garamond text-gray-700">  
-                    <DialogHeader className="text-2xl font-semibold mb-6 uppercase">{isEditing ? 'Edit Product' : 'Add Product'}</DialogHeader>  
-                    <div className="grid grid-cols-1 gap-8 ">  
-                        {/* Input Fields */}  
-                        {isEditing && (  
-                            <input  
-                                type="text"  
-                                placeholder="Product ID"  
-                                value={newProduct._id}  
-                                onChange={(e) => setNewProduct({ ...newProduct, _id: e.target.value })}  
-                                className="w-full border-b border-gray-400 p-2 placeholder-gray-500"  
-                                disabled  
-                            />  
-                        )}  
+                <div className="p-2 font-eb-garamond text-gray-700">  
+                    <DialogHeader className="text-2xl font-semibold mb-4 uppercase">{isEditing ? 'Edit Product' : 'Add Product'}</DialogHeader>  
+                    <div className="grid grid-cols-1 gap-5 ">  
+                        
                         <input  
                             type="text"  
                             placeholder="Product Name"  

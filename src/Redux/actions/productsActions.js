@@ -10,7 +10,7 @@ export const addProductAction = (product) => async (dispatch) => {
             payload: newProduct
         });
     } catch (error) {
-        console.log('Error Adding Product', error);
+        ('Error Adding Product', error);
         dispatch({ type: 'ERROR', payload: error.message });
     }
 };
@@ -24,7 +24,7 @@ export const fetchProductsAction = () => async (dispatch) => {
             payload: products
         });
     } catch (error) {
-        console.log('Error Fetching Products', error);
+        ('Error Fetching Products', error);
         dispatch({ type: 'ERROR', payload: error.message });
     }
 };
@@ -57,7 +57,7 @@ export const fetchProductByIdAction = (productId) => async (dispatch, getState) 
             payload: product,
         });
     } catch (error) {
-        console.log('Error Fetching Product', error);
+        ('Error Fetching Product', error);
         dispatch({ type: 'ERROR', payload: error.message });
     }
 };
@@ -71,7 +71,7 @@ export const deleteProductAction = (productId) => async (dispatch) => {
             payload: productId
         });
     } catch (error) {
-        console.log('Error Deleting Product', error);
+        ('Error Deleting Product', error);
         dispatch({ type: 'ERROR', payload: error.message });
     }
 };
@@ -91,7 +91,7 @@ export const editProductAction = (productId, editedProduct) => async (dispatch) 
             payload: fetchedProduct  
         });
     } catch (error) {
-        console.log('Error Editing Product', error);
+        ('Error Editing Product', error);
         dispatch({ type: 'ERROR', payload: error.message });
     }
 }

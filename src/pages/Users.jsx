@@ -14,7 +14,7 @@ export default function Users() {
   };
   async function getCustomers() {
     let token = sessionStorage.getItem("token");
-    console.log(token);
+    (token);
 
     await axios
       .get(`https://art-ecommerce-server.glitch.me/admin/customers`, {
@@ -24,7 +24,7 @@ export default function Users() {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        (res.data);
 
         setCustomers(res.data);
       })
@@ -33,19 +33,19 @@ export default function Users() {
       });
   }
   useEffect(() => {
-    console.log("asdasd");
+    ("asdasd");
 
     getCustomers();
   }, []);
   useEffect(() => {
     if (customers.length) {
-      console.log(
+      (
         customers.slice(
           (currentPage - 1) * customerPerPages,
           currentPage * customerPerPages
         )
       );
-      console.log(customers.length / customerPerPages);
+      (customers.length / customerPerPages);
       const filteredCustomers =
         searchedCustomer == ""
           ? [...customers]

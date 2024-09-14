@@ -6,7 +6,7 @@ function getOrders(token) {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     }})
-    .then((response) => console.log(response.data))
+    .then((response) => (response.data))
     .catch((error) => {
       console.error(error);
     });
@@ -17,7 +17,7 @@ function getOrder(orderId,token) {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     }})
-    .then((response) => console.log(response.data))
+    .then((response) => (response.data))
     .catch((error) => {
       console.error(error);
     });
@@ -32,7 +32,7 @@ function updateOrderStatus(orderId, newStatus,token) {
         'Authorization': `Bearer ${token}`
       }}
     )
-    .then((response) => console.log(response.data))
+    .then((response) => (response.data))
     .catch((error) => {
       console.error(error);
     });

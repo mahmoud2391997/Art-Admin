@@ -1,7 +1,7 @@
 function getProducts() {
   axios
     .get("https://art-ecommerce-server.glitch.me/api/products")
-    .then((response) => console.log(response.data))
+    .then((response) => (response.data))
     .catch((error) => {
       console.error(error);
     });
@@ -10,7 +10,7 @@ function getProducts() {
 function getProduct(productId) {
   axios
     .get(`https://art-ecommerce-server.glitch.me/api/products/${productId}`)
-    .then((response) => console.log(response.data))
+    .then((response) => (response.data))
     .catch((error) => {
       console.error(error);
     });
@@ -22,7 +22,7 @@ function addProduct(product,token) {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     }})
-    .then((response) => console.log(response.data))
+    .then((response) => (response.data))
     .catch((error) => {
       console.error(error);
     });
@@ -37,7 +37,7 @@ function editProduct(productId, editedProduct,token) {
         'Authorization': `Bearer ${token}`
       }}
     )
-    .then((response) => console.log(response.data))
+    .then((response) => (response.data))
     .catch((error) => {
       console.error(error);
     });
@@ -49,7 +49,7 @@ function deleteProduct(productId,token) {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     }})
-    .then((response) => console.log(response.data))
+    .then((response) => (response.data))
     .catch((error) => {
       console.error(error);
     });

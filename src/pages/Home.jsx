@@ -18,7 +18,7 @@ export default function Home() {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        (response.data);
 
         setCardStatArr([
           response.data.income,

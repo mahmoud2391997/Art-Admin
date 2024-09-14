@@ -6,12 +6,12 @@ export const addProduct = async (product) => {
         `https://art-ecommerce-server.glitch.me/admin/products`, product,
         {headers:{
             'Content-Type': 'application/json',
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTU1MjI0OSwiZXhwIjoxNzI1ODExNDQ5fQ.yLJA9sz4i7JEwtPPLFQ8vyLA_29YBDDLX-WXboFbbAg`
+            'Authorization': `Bearer ${sessionStorage.getItem("token")}`
         }}
         )
         return response.data;
     } catch (error) {
-        console.log('Error adding product:', error);
+        ('Error adding product:', error);
         throw error;
     }
 };
@@ -21,7 +21,7 @@ export const fetchProducts = async () => {
         const response = await axios.get('https://art-ecommerce-server.glitch.me/api/products');
         return response.data;
     } catch (error) {
-        console.log('Error fetching products:', error);
+        ('Error fetching products:', error);
         throw error;
     }
 };
@@ -31,7 +31,7 @@ export const fetchProductById = async (productId) => {
         const response = await axios.get(`https://art-ecommerce-server.glitch.me/api/products/${productId}`);
         return response.data;
     } catch (error) {
-        console.log('Error fetching product by ID:', error);
+        ('Error fetching product by ID:', error);
         throw error;
     }
 };
@@ -42,12 +42,12 @@ export const deleteProduct = async (productId) => {
         `https://art-ecommerce-server.glitch.me/api/products/${productId}`,
         {headers:{
             'Content-Type': 'application/json',
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTU1MjI0OSwiZXhwIjoxNzI1ODExNDQ5fQ.yLJA9sz4i7JEwtPPLFQ8vyLA_29YBDDLX-WXboFbbAg`
+            'Authorization': `Bearer ${sessionStorage.getItem("token")}`
         }}
         )
         return response.data;
     } catch (error) {
-        console.log('Error deleting product:', error);
+        ('Error deleting product:', error);
         throw error;
     }
 };
@@ -58,12 +58,12 @@ export const editProduct = async (productId, editedProduct) => {
         `https://art-ecommerce-server.glitch.me/api/products/${productId}`,
         editedProduct,{headers:{
             'Content-Type': 'application/json',
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTcyNTU1MjI0OSwiZXhwIjoxNzI1ODExNDQ5fQ.yLJA9sz4i7JEwtPPLFQ8vyLA_29YBDDLX-WXboFbbAg`
+            'Authorization': `Bearer ${sessionStorage.getItem("token")}`
         }}
         )
         return response.data;
     } catch (error) {
-        console.log('Error editing product:', error);
+        ('Error editing product:', error);
         throw error;
     }
 };

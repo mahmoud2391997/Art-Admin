@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { replace, useNavigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
@@ -11,6 +11,8 @@ import axios from "axios";
 
 export default function Login() {
   const navigate = useNavigate();
+  const [response,setResponse] =useState(true)
+
   async function loginAuthentication(email, password) {
     await axios
       .post(`https://art-ecommerce-server.glitch.me/admin/auth/login`, {
@@ -18,12 +20,15 @@ export default function Login() {
         password: password,
       })
       .then((response) => {
-        console.log(response.data);
+        (response.data);
         sessionStorage.setItem("token", response.data.token);
-        navigate("/home", { replace: true });
+        navigate("/products", { replace: true });
       })
       .catch((error) => {
         console.error(error);
+        if (error.message == "Request failed with status code 401") {
+          setResponse(false)
+        }
       });
   }
   const schema = yup.object().shape({
@@ -57,7 +62,7 @@ export default function Login() {
     //   navigate
     //   //   location
     // );
-    console.log(data);
+    (data);
   };
   return (
     <div className="text-[var(--main-font)] flex flex-col gap-[10%] lg:gap-10 justify-center items-center h-[100vh] w-[100%] py-auto lg:py-[5%] ">
@@ -93,7 +98,11 @@ export default function Login() {
             </Typography>
           )}
         </div>
-
+        {!response ? (
+            <Typography className="pl-2 text-red-500 text-sm">
+              invalid email or password
+            </Typography>
+          ):null}
         <Button
           type="submit"
           className="self-center lg:self-end w-fit p-0 bg-transparent shadow-none hover:shadow-none"

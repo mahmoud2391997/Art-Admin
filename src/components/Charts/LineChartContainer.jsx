@@ -10,7 +10,7 @@ import {
 } from "recharts";
 
 export default function LineChartContainer({ lineChartData }) {
-  console.log(lineChartData);
+  (lineChartData);
 
   return (
     <div className="w-full h-72">

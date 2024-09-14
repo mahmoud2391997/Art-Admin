@@ -9,7 +9,7 @@ export const getOrders = async () => {
                 'Authorization': `Bearer ${sessionStorage.getItem("token")}`
             }
         });
-        console.log(response.data);
+        (response.data);
         return response.data;
     } catch (error) {
         console.error("Error fetching orders:", error);
@@ -26,7 +26,7 @@ export const getOrder = async (orderId) => {
                 'Authorization': `Bearer ${sessionStorage.getItem("token")}`
             }
         });
-        console.log(response.data);
+        (response.data);
         return response.data;
     } catch (error) {
         console.error("Error fetching order by ID:", error);
@@ -47,7 +47,7 @@ export const updateOrderStatus = async (orderId, newStatus) => {
                 }
             }
         );
-        console.log(response.data);
+        (response.data);
         return response.data;
     } catch (error) {
         console.error("Error updating order status:", error);

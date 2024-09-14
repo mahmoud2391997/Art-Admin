@@ -10,7 +10,7 @@ export default async function loginAuthentication(email, password) {
     password: password,
   })
   .then((response) => {
-    console.log(response.data);
+    (response.data);
     sessionStorage.setItem("token", response.data.token);
       navigate("/",{ replace:true});
       

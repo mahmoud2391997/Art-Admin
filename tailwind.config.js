@@ -1,8 +1,42 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
-export default {
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        main: "var(--main-gray)",
+      },
+      fontFamily: {
+        "eb-garamond": ['"EB Garamond"', "serif"],
+      },
+      keyframes: {
+        moveVertical: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-15px)" },
+        },
+        snakeStroke: {
+          "0%": {
+            strokeDasharray: "10% 90%",
+            strokeDashoffset: "0%",
+          },
+          "50%": {
+            strokeDasharray: "90% 10%",
+            strokeDashoffset: "100%",
+          },
+          "100%": {
+            strokeDasharray: "10% 90%",
+            strokeDashoffset: "0%",
+          },
+        },
+      },
+      animation: {
+        moveVertical: "moveVertical 5s ease-in-out infinite",
+        snakeStroke: "snakeStroke 2s ease-in-out infinite",
+      },
+    },
   },
   plugins: [],
-};
+});
